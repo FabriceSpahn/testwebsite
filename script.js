@@ -25,6 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let fallbackApplied = false;
   let frameCallbackId = 0;
   let animationFrameId = 0;
+  let rippleAnimationFrameId = 0;
+  let isFrameLoopActive = false;
   let cursorPillFrameId = 0;
   let cursorPillLastTime = 0;
   let cursorPillExpressionTimeoutId = 0;
@@ -137,6 +139,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (nextView !== "home") {
       hideCursorPill();
+    } else {
+      window.requestAnimationFrame(() => {
+        resizeCanvas();
+        bootVideo();
+        startVideoFrameLoop();
+        drawFrame();
+      });
     }
 
     viewButtons.forEach((button) => {
@@ -193,7 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
   copyEmailButtons.forEach((button) => {
     button.addEventListener("click", async () => {
       const address = button.dataset.email;
-      const feedback = button.querySelector("[data-copy-feedback]");
+      const feedbackItems = Array.from(button.querySelectorAll("[data-copy-feedback]"));
 
       if (!address) {
         return;
@@ -202,17 +211,21 @@ window.addEventListener("DOMContentLoaded", () => {
       try {
         await copyEmail(address);
 
-        if (feedback) {
-          const originalLabel = feedback.textContent;
-          feedback.textContent = "Copied";
+        if (feedbackItems.length) {
+          const originalLabels = feedbackItems.map((item) => item.textContent);
+          feedbackItems.forEach((item) => {
+            item.textContent = "Copied";
+          });
           window.setTimeout(() => {
-            feedback.textContent = originalLabel;
+            feedbackItems.forEach((item, index) => {
+              item.textContent = originalLabels[index];
+            });
           }, 1800);
         }
       } catch {
-        if (feedback) {
-          feedback.textContent = "Copy failed";
-        }
+        feedbackItems.forEach((item) => {
+          item.textContent = "Copy failed";
+        });
       }
     });
   });
@@ -374,8 +387,18 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function queueVideoFrame() {
+    if (!isFrameLoopActive) {
+      return;
+    }
+
     if (typeof video.requestVideoFrameCallback === "function") {
       frameCallbackId = video.requestVideoFrameCallback(() => {
+        frameCallbackId = 0;
+
+        if (!isFrameLoopActive) {
+          return;
+        }
+
         drawFrame();
         queueVideoFrame();
       });
@@ -383,9 +406,47 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     animationFrameId = window.requestAnimationFrame(() => {
+      animationFrameId = 0;
+
+      if (!isFrameLoopActive) {
+        return;
+      }
+
       drawFrame();
       queueVideoFrame();
     });
+  }
+
+  function startVideoFrameLoop() {
+    if (isFrameLoopActive) {
+      return;
+    }
+
+    isFrameLoopActive = true;
+    queueVideoFrame();
+  }
+
+  function stopVideoFrameLoop() {
+    isFrameLoopActive = false;
+
+    if (frameCallbackId && typeof video.cancelVideoFrameCallback === "function") {
+      video.cancelVideoFrameCallback(frameCallbackId);
+    }
+
+    window.cancelAnimationFrame(animationFrameId);
+    frameCallbackId = 0;
+    animationFrameId = 0;
+  }
+
+  function animateRipples() {
+    rippleAnimationFrameId = 0;
+    const now = performance.now();
+    ripples = ripples.filter((ripple) => now - ripple.startedAt < 1600);
+    drawFrame();
+
+    if (ripples.length > 0 && !document.hidden) {
+      rippleAnimationFrameId = window.requestAnimationFrame(animateRipples);
+    }
   }
 
   function startEffect() {
@@ -414,7 +475,9 @@ window.addEventListener("DOMContentLoaded", () => {
       ripples.shift();
     }
 
-    drawFrame();
+    if (!rippleAnimationFrameId) {
+      rippleAnimationFrameId = window.requestAnimationFrame(animateRipples);
+    }
   }
 
   async function bootVideo() {
@@ -429,25 +492,47 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function resumeExperience() {
+    resizeCanvas();
+
+    if (video.networkState === HTMLMediaElement.NETWORK_EMPTY) {
+      video.load();
+    }
+
+    bootVideo();
+    startVideoFrameLoop();
+    window.requestAnimationFrame(() => {
+      resizeCanvas();
+      drawFrame();
+    });
+  }
+
   video.addEventListener("loadedmetadata", startEffect);
   video.addEventListener("loadeddata", startEffect);
   video.addEventListener("canplay", startEffect);
   video.addEventListener("playing", startEffect);
   video.addEventListener("timeupdate", drawFrame);
+  video.addEventListener("pause", () => {
+    if (!document.hidden) {
+      bootVideo();
+    }
+  });
   mediaFrame.addEventListener("pointerdown", createRipple);
   mediaFrame.addEventListener("pointerdown", toggleCursorExpression);
   mediaFrame.addEventListener("pointermove", moveCursorPill);
   mediaFrame.addEventListener("pointerenter", moveCursorPill);
   mediaFrame.addEventListener("pointerleave", hideCursorPill);
   window.addEventListener("blur", hideCursorPill);
-  window.addEventListener("resize", () => {
+
+  function handleViewportResize() {
     resizeCanvas();
     drawFrame();
-  });
+  }
 
-  resizeCanvas();
-  bootVideo();
-  queueVideoFrame();
+  window.addEventListener("resize", handleViewportResize);
+  window.visualViewport?.addEventListener("resize", handleViewportResize);
+
+  resumeExperience();
 
   window.setTimeout(() => {
     if (!hasDrawnFrame) {
@@ -456,12 +541,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }, 2200);
 
-  window.addEventListener("pagehide", () => {
-    if (frameCallbackId && typeof video.cancelVideoFrameCallback === "function") {
-      video.cancelVideoFrameCallback(frameCallbackId);
+  window.addEventListener("pageshow", resumeExperience);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopVideoFrameLoop();
+      window.cancelAnimationFrame(rippleAnimationFrameId);
+      rippleAnimationFrameId = 0;
+      return;
     }
 
-    window.cancelAnimationFrame(animationFrameId);
+    resumeExperience();
+  });
+
+  window.addEventListener("pagehide", () => {
+    stopVideoFrameLoop();
+    window.cancelAnimationFrame(rippleAnimationFrameId);
+    rippleAnimationFrameId = 0;
     window.cancelAnimationFrame(cursorPillFrameId);
     window.clearTimeout(cursorPillExpressionTimeoutId);
   });

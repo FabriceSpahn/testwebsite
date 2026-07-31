@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Fabrice Spahn</title>
-    <link rel="stylesheet" href="styles.css?v=20260731-33" />
+    <link rel="stylesheet" href="styles.css?v=20260731-40" />
   </head>
   <body class="portfolio-page">
     <main class="home-stage" aria-label="Home">
@@ -31,21 +32,29 @@
           <header class="intro-grid">
             <h1 id="about-title">About</h1>
             <div class="intro-copy">
+              <p>Hey, my name is Fabrice.</p>
               <p>
                 I’m a designer focused on creating thoughtful digital experiences and
                 visual identities. My work combines clarity, functionality, and bold
-                aesthetics to craft work that is both intuitive and distinctive.
+                aesthetics to create experiences that are both intuitive and distinctive.
               </p>
               <p>
-                Alongside my independent work, I’m currently part of the team behind
-                White Risk, Switzerland’s leading avalanche and ski touring planning
-                app. I’m responsible for the app’s visual identity and design system,
-                while also shaping the user experience and user flows to make complex
-                information accessible and easy to navigate.
+                Alongside my independent work, I’m part of the team behind White Risk,
+                Switzerland’s leading avalanche and ski touring planning app. I lead the
+                app’s visual identity and design system while shaping the user experience
+                to make complex information easy to understand and navigate.
               </p>
               <p>
-                I work independently and stay closely involved in every project from
-                concept to final delivery. No layers. Just thoughtful design.
+                Whether I’m designing a digital product, building a brand identity, or
+                refining a design system, I believe great design starts with understanding
+                people and solving real problems. My approach is collaborative, strategic,
+                and detail-oriented, with a strong focus on creating work that feels
+                effortless to use and built to last.
+              </p>
+              <p>
+                I work directly with my clients and stay closely involved throughout
+                every project, from concept to final delivery. No layers. Just thoughtful
+                design.
               </p>
             </div>
           </header>
@@ -108,20 +117,36 @@
           <section class="contact-grid">
             <h1 id="contact-title">Contact</h1>
             <div class="contact-details">
-              <div class="contact-email">
-                <a href="mailto:fbrc.sphn@gmail.com">fbrc.sphn@gmail.com</a>
+              <p class="contact-address">fbrc.sphn@gmail.com</p>
+              <div class="contact-actions">
+                <a class="text-action" href="mailto:fbrc.sphn@gmail.com">
+                  <span class="text-action__label" aria-hidden="true">
+                    <span class="text-action__track"><span>Open in Mail</span><span>Open in Mail</span></span>
+                  </span>
+                  <span class="visually-hidden">Open in Mail</span>
+                </a>
                 <button
-                  class="contact-copy"
+                  class="contact-copy text-action"
                   type="button"
                   data-copy-email
                   data-email="fbrc.sphn@gmail.com"
                   aria-live="polite"
                 >
-                  <span data-copy-feedback>Copy email</span>
+                  <span class="text-action__label" aria-hidden="true">
+                    <span class="text-action__track">
+                      <span data-copy-feedback>Copy email</span>
+                      <span data-copy-feedback>Copy email</span>
+                    </span>
+                  </span>
+                  <span class="visually-hidden" data-copy-feedback>Copy email</span>
                 </button>
               </div>
-              <a href="https://www.linkedin.com/in/fbrc/" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="https://www.instagram.com/fbrices/" target="_blank" rel="noreferrer">Instagram</a>
+              <a class="text-action contact-linkedin" href="https://www.linkedin.com/in/fbrc/" target="_blank" rel="noreferrer">
+                <span class="text-action__label" aria-hidden="true">
+                  <span class="text-action__track"><span>LinkedIn</span><span>LinkedIn</span></span>
+                </span>
+                <span class="visually-hidden">LinkedIn</span>
+              </a>
             </div>
           </section>
         </div>
@@ -155,6 +180,6 @@
       </button>
     </nav>
 
-    <script src="script.js?v=20260731-33"></script>
+    <script src="script.js?v=20260731-35"></script>
   </body>
 </html>
