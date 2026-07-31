@@ -1,222 +1,160 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fabrice</title>
-    <script>
-      document.documentElement.classList.remove("no-js");
-      document.documentElement.classList.add("js-enabled");
-    </script>
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Fabrice Spahn</title>
+    <link rel="stylesheet" href="styles.css?v=20260731-33" />
   </head>
-  <body>
-    <nav class="site-nav" aria-label="Primary">
-      <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page"><span class="site-nav__label">Home</span></a>
-      <a class="site-nav__link" href="agb.html"><span class="site-nav__label">AGB</span></a>
-      <button class="site-nav__link site-nav__link--button" type="button" data-contact-open aria-haspopup="dialog" aria-controls="contact-overlay"><span class="site-nav__label">Contact</span></button>
-    </nav>
-    <div class="contact-overlay" id="contact-overlay" hidden>
-      <div class="contact-overlay__backdrop" data-contact-close></div>
-      <section class="contact-panel" role="dialog" aria-modal="true" aria-labelledby="contact-title">
-        <div class="contact-panel__group">
-          <h2 class="contact-panel__title" id="contact-title">Connect via</h2>
-          <a
-            class="contact-item"
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span class="contact-item__label">LinkedIN</span>
-            <span class="contact-item__icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M8 11v5" />
-                <path d="M8 8v.01" />
-                <path d="M12 16v-5" />
-                <path d="M16 16v-3a2 2 0 1 0 -4 0" />
-                <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" />
-              </svg>
-            </span>
-          </a>
-        </div>
-        <div class="contact-panel__group">
-          <h2 class="contact-panel__title">Write via</h2>
-          <button class="contact-item contact-item--button" type="button" data-copy-email data-email="fbrc.sphn@gmail.com">
-            <span class="contact-item__label">fbrc.sphn@gmail.com</span>
-            <span class="contact-item__icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
-                <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
-              </svg>
-            </span>
-          </button>
-          <a class="contact-item" href="mailto:fbrc.sphn@gmail.com">
-            <span class="contact-item__label">Mail client</span>
-            <span class="contact-item__icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
-                <path d="M3 7l9 6l9 -6" />
-              </svg>
-            </span>
-          </a>
-        </div>
-      </section>
-    </div>
-    <main class="page-shell">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media-frame">
-          <video
-            id="hero-video"
-            class="hero-video"
-            autoplay
-            muted
-            playsinline
-            loop
-            preload="auto"
-          >
-            <source src="assets/media/hero.video.mp4" type="video/mp4" />
-          </video>
-          <canvas
-            id="hero-raster"
-            class="hero-raster"
-            width="450"
-            height="450"
-            aria-hidden="true"
-          ></canvas>
-          <h1
-            class="hero-title"
-            id="hero-title"
-            data-text="Hey it's Fabrice"
-          >
-            <span class="hero-title__main" data-text="Hey it's Fabrice">Hey it&apos;s Fabrice</span>
-          </h1>
-        </div>
-      </section>
-
-      <section class="intro-grid glow-section" aria-label="Introduction">
-        <p>
-          I’m a designer focused on creating thoughtful digital experiences and
-          visual identities. My work combines clarity, functionality, and bold
-          aesthetics to craft work that is both intuitive and distinctive.
-        </p>
-        <p>
-          I work independently and stay closely involved in every project from
-          concept to final delivery. No layers. Just thoughtful design.
-        </p>
-      </section>
-
-      <section class="list-section glow-section" aria-labelledby="clients-title">
-        <h2 id="clients-title">Clients and Companies I worked with</h2>
-        <div class="single-column-list">
-          <p>Swiss Life</p>
-          <p>Swissgrid</p>
-          <p>Vespa</p>
-          <p>Accenture Song</p>
-          <p>Sonntagszeitung</p>
-          <p>Grand Resort Bad Ragaz</p>
-          <p>Swissgrid</p>
-          <p>Audi</p>
-          <p>Zurich Insurance</p>
-          <p>Oris</p>
-          <p>Stadt Zürich</p>
-          <p>POW</p>
-          <p>Ensoy</p>
-          <p>FC BASEL</p>
-          <p>Zürich Film Festival</p>
-        </div>
-      </section>
-
-      <section class="list-section glow-section" aria-labelledby="awards-title">
-        <h2 id="awards-title">Latest Awards I contributed</h2>
-        <div class="awards-table" role="table" aria-label="Awards">
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Swissgrid</span>
-            <span role="cell">Master - Overall</span>
-            <span role="cell">2026</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Swissgrid</span>
-            <span role="cell">Bronze - Brand Experience</span>
-            <span role="cell">2026</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss Apps</span>
-            <span role="cell">White Risk</span>
-            <span role="cell">Master - Overall</span>
-            <span role="cell">2025</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss Apps</span>
-            <span role="cell">White Risk</span>
-            <span role="cell">Gold - User Experience</span>
-            <span role="cell">2025</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Swiss Life</span>
-            <span role="cell">Silver - Productivity</span>
-            <span role="cell">2025</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Swiss Life</span>
-            <span role="cell">Silver - Marketing</span>
-            <span role="cell">2025</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Retail Central CX</span>
-            <span role="cell">Gold - Digital Commerce</span>
-            <span role="cell">2023</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss Apps</span>
-            <span role="cell">Vespa</span>
-            <span role="cell">Bronze - User Experience</span>
-            <span role="cell">2020</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss Apps</span>
-            <span role="cell">Vespa</span>
-            <span role="cell">Bronze - Business Impact</span>
-            <span role="cell">2020</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Vespa</span>
-            <span role="cell">Bronze - Digital Commerce</span>
-            <span role="cell">2020</span>
-          </div>
-          <div class="table-row" role="row">
-            <span role="cell">Best of Swiss WEB</span>
-            <span role="cell">Vespa</span>
-            <span role="cell">Bronze - Business</span>
-            <span role="cell">2020</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="list-section glow-section" aria-labelledby="exhibitions-title">
-        <h2 id="exhibitions-title">Latest Exhibitions I participated</h2>
-        <div class="awards-table awards-table--compact" role="table" aria-label="Exhibitions">
-          <div class="table-row table-row--three" role="row">
-            <span role="cell">Arselectronica, Infinite Nows</span>
-            <span role="cell">T-Kit</span>
-            <span role="cell">2021</span>
-          </div>
-          <div class="table-row table-row--three" role="row">
-            <span role="cell">ZHdK Highlights</span>
-            <span role="cell">T-Kit</span>
-            <span role="cell">2020</span>
-          </div>
-        </div>
-      </section>
+  <body class="portfolio-page">
+    <main class="home-stage" aria-label="Home">
+      <div class="hero-media-frame">
+        <video
+          id="hero-video"
+          class="hero-video"
+          autoplay
+          muted
+          playsinline
+          loop
+          preload="auto"
+        >
+          <source src="assets/media/hero.video.mp4?v=20260731-2" type="video/mp4" />
+        </video>
+        <canvas id="hero-raster" class="hero-raster" aria-hidden="true"></canvas>
+      </div>
     </main>
-    <script src="script.js"></script>
+
+    <section class="content-panel" id="about-panel" data-panel="about" aria-labelledby="about-title" hidden>
+      <div class="content-panel__scroller">
+        <div class="content-panel__inner">
+          <header class="intro-grid">
+            <h1 id="about-title">About</h1>
+            <div class="intro-copy">
+              <p>
+                I’m a designer focused on creating thoughtful digital experiences and
+                visual identities. My work combines clarity, functionality, and bold
+                aesthetics to craft work that is both intuitive and distinctive.
+              </p>
+              <p>
+                Alongside my independent work, I’m currently part of the team behind
+                White Risk, Switzerland’s leading avalanche and ski touring planning
+                app. I’m responsible for the app’s visual identity and design system,
+                while also shaping the user experience and user flows to make complex
+                information accessible and easy to navigate.
+              </p>
+              <p>
+                I work independently and stay closely involved in every project from
+                concept to final delivery. No layers. Just thoughtful design.
+              </p>
+            </div>
+          </header>
+
+          <section class="info-section" aria-labelledby="clients-title">
+            <h2 id="clients-title">Clients and Companies</h2>
+            <div class="single-column-list">
+              <p>Swiss Life</p>
+              <p>Swissgrid</p>
+              <p>Vespa</p>
+              <p>Accenture Song</p>
+              <p>Sonntagszeitung</p>
+              <p>Grand Resort Bad Ragaz</p>
+              <p>Audi</p>
+              <p>Zurich Insurance</p>
+              <p>Oris</p>
+              <p>Stadt Zürich</p>
+              <p>POW</p>
+              <p>Ensoy</p>
+              <p>FC Basel</p>
+              <p>Zürich Film Festival</p>
+            </div>
+          </section>
+
+          <section class="info-section" aria-labelledby="awards-title">
+            <h2 id="awards-title">Awards</h2>
+            <div class="data-list" role="table" aria-label="Awards">
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Swissgrid</span><span role="cell">Master — Overall</span><span role="cell">2026</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Swissgrid</span><span role="cell">Bronze — Brand Experience</span><span role="cell">2026</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Apps</span><span role="cell">White Risk</span><span role="cell">Master — Overall</span><span role="cell">2025</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Apps</span><span role="cell">White Risk</span><span role="cell">Gold — User Experience</span><span role="cell">2025</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Swiss Life</span><span role="cell">Silver — Productivity</span><span role="cell">2025</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Swiss Life</span><span role="cell">Silver — Marketing</span><span role="cell">2025</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Retail Central CX</span><span role="cell">Gold — Digital Commerce</span><span role="cell">2023</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Apps</span><span role="cell">Vespa</span><span role="cell">Bronze — User Experience</span><span role="cell">2020</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Apps</span><span role="cell">Vespa</span><span role="cell">Bronze — Business Impact</span><span role="cell">2020</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Vespa</span><span role="cell">Bronze — Digital Commerce</span><span role="cell">2020</span></div>
+              <div class="data-row" role="row"><span role="cell">Best of Swiss Web</span><span role="cell">Vespa</span><span role="cell">Bronze — Business</span><span role="cell">2020</span></div>
+            </div>
+          </section>
+
+          <section class="info-section" aria-labelledby="exhibitions-title">
+            <h2 id="exhibitions-title">Exhibitions</h2>
+            <div class="data-list" role="table" aria-label="Exhibitions">
+              <div class="data-row data-row--three" role="row"><span role="cell">Ars Electronica, Infinite Nows</span><span role="cell">T-Kit</span><span role="cell">2021</span></div>
+              <div class="data-row data-row--three" role="row"><span role="cell">ZHdK Highlights</span><span role="cell">T-Kit</span><span role="cell">2020</span></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-panel content-panel--legal" id="legal-panel" data-panel="legal" aria-label="General Terms and Conditions" hidden>
+      <iframe class="legal-frame" src="agb.html" title="General Terms and Conditions"></iframe>
+    </section>
+
+    <section class="content-panel" id="contact-panel" data-panel="contact" aria-labelledby="contact-title" hidden>
+      <div class="content-panel__scroller">
+        <div class="content-panel__inner">
+          <section class="contact-grid">
+            <h1 id="contact-title">Contact</h1>
+            <div class="contact-details">
+              <div class="contact-email">
+                <a href="mailto:fbrc.sphn@gmail.com">fbrc.sphn@gmail.com</a>
+                <button
+                  class="contact-copy"
+                  type="button"
+                  data-copy-email
+                  data-email="fbrc.sphn@gmail.com"
+                  aria-live="polite"
+                >
+                  <span data-copy-feedback>Copy email</span>
+                </button>
+              </div>
+              <a href="https://www.linkedin.com/in/fbrc/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://www.instagram.com/fbrices/" target="_blank" rel="noreferrer">Instagram</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div class="cursor-pill" data-cursor-pill aria-hidden="true">
+      Klick me <span data-cursor-expression>:-)</span>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="site-nav__link is-active" type="button" data-view="home" aria-pressed="true" aria-label="Home">
+        <span class="site-nav__label" aria-hidden="true">
+          <span class="site-nav__label-track"><span>Home</span><span>Home</span></span>
+        </span>
+      </button>
+      <button class="site-nav__link" type="button" data-view="about" aria-pressed="false" aria-label="About">
+        <span class="site-nav__label" aria-hidden="true">
+          <span class="site-nav__label-track"><span>About</span><span>About</span></span>
+        </span>
+      </button>
+      <button class="site-nav__link" type="button" data-view="legal" aria-pressed="false" aria-label="AGB">
+        <span class="site-nav__label" aria-hidden="true">
+          <span class="site-nav__label-track"><span>AGB</span><span>AGB</span></span>
+        </span>
+      </button>
+      <button class="site-nav__link" type="button" data-view="contact" aria-pressed="false" aria-label="Contact">
+        <span class="site-nav__label" aria-hidden="true">
+          <span class="site-nav__label-track"><span>Contact</span><span>Contact</span></span>
+        </span>
+      </button>
+    </nav>
+
+    <script src="script.js?v=20260731-33"></script>
   </body>
 </html>
